@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #87b8e2;
+      padding-top: 100px;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    #timer {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #e91e63;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Countdown to  Birthday 🎉</h1>
+  <div id="timer">Loading...</div>
+
+  <script>
+    // Set your birthday date and time here
+    const birthdayDate = new Date("2025-07-20T00:00:00").getTime();
+
+    const timerElement = document.getElementById("timer");
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = birthdayDate - now;
+
+      if (distance <= 0) {
+        clearInterval(countdown);
+        timerElement.innerHTML = "🎈 It's Time! 🎈 Redirecting...";
+        // Redirect to the birthday wish page
+        setTimeout(() => {
+          window.location.href = "index2.html";
+        }, 3000);
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
